@@ -15,11 +15,13 @@ Let us start by the build pipeline. This is roughly what wercker does everytime 
 
 ## The box
 
-After the code is cloned and checked out a box is provisioned. Then the build pipeline is executed inside this box. For Scala we need a box that has all the basics for an Scala environment installed (OpenJDK 7, SBT)
+A box is an machine that provides a context to execute the build pipeline. For example, if you have a Scala project, you want to run your pipeline in a context that runs the JVM, Scala, SBT and other tools that you need. Not all tools need to be present in that context.
+
+Wercker highly encourages her users to create boxes and to share them with the community. What is better than creating a box for yourself and share it with others. This allows others to provide valuable feedback and even come with improvements. Creating a box is easy. It is nothing more than a simple yaml-file that contains the definition. This means you do not need to install any software to create your own box. Contributing to an existing box is also easy and users can leverage all the power from social coding platforms like Github and Bitbucket.
 
 	apt-get install openjdk-7-jre -qq
 	
-	$sudo wget http://www.scala-lang.org/downloads/distrib/files/scala-2.10.0.tgz
+	sudo wget http://www.scala-lang.org/downloads/distrib/files/scala-2.10.0.tgz
 	tar zxvf scala-2.10.0.tgz
 	mv scala-2.10.0 /usr/share/scala
 	
