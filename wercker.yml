@@ -1,6 +1,9 @@
 box: wercker/ruby
 build:
   steps:
+    - script:
+        name: echo a build variable
+        code: echo $CI_BUILD
     - bundle-install
     - script:
         name: sass compile
