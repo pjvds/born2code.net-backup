@@ -1,6 +1,6 @@
 # Creating Scala support
 
-Tomorrow [wercker](http://wercker.com) will host the [Scala Hackathon](http://www.meetup.com/amsterdam-scala/events/116311362/). A meetup with only one goal; hacking some scala code. Since people showed interesest in wercker during the [last meetup](http://www.meetup.com/amsterdam-scala/events/116300402/) I decided to do a short lightning talk to show wercker and tell what continuous delivery can do for you and your project. But here is the catch, at the time of writing wercker does not support Scala out of the box. So let us find out how we can add this.
+[Wercker](http://wercker.com) hosted the [Scala Hackathon](http://www.meetup.com/amsterdam-scala/events/116311362/). A meetup with only one goal; hacking scala code. Since people showed interesest in wercker during the [last meetup](http://www.meetup.com/amsterdam-scala/events/116300402/) I decided to do a short lightning talk to show wercker and tell what continuous delivery can do for you and your project.
 
 ## Open platform
 
@@ -15,11 +15,30 @@ Let us start by the build pipeline. This is roughly what wercker does everytime 
 
 ## The box
 
-A box is an machine that provides a context to execute the build pipeline. For example, if you have a Scala project, you want to run your pipeline in a context that runs the JVM, Scala, SBT and other tools that you need. Not all tools need to be present in that context.
+A box is a virtual machine that is used to execute the build and deploy pipeline. Wercker provides boxes for different programming environments like python, ruby and nodejs. A box consists of an operating system and packages, for example, the ruby box consists of ubuntu 12.04, ruby 1.9.3 and other packages that are common for ruby development like webkitserver. 
 
-Wercker highly encourages her users to create boxes and to share them with the community. What is better than creating a box for yourself and share it with others. This allows others to provide valuable feedback and even come with improvements. Creating a box is easy. It is nothing more than a simple yaml-file that contains the definition. This means you do not need to install any software to create your own box. Contributing to an existing box is also easy and users can leverage all the power from social coding platforms like Github and Bitbucket.
+Because wercker cannot create boxes for all possible situations they give users the option to create boxes themself. Creating a box is easy, in fact, it is nothing more than a simple yaml-file. This means you do not need to install any software to create your own box. Also contributing to an existing box is rather easy and users can leverage all the power from social coding platforms like Github and Bitbucket.
 
-	apt-get install openjdk-7-jre -qq
+Let's start by creating the first part of the `wercker-box.yml` file that just contains the basic properties of the box.
+
+	name: scala
+	version: 0.0.1
+	type: main
+
+The box is named `scala` and has a version of `0.0.1` to define we are still just experimenting. The type property is set to `main`, which defines that this box should be used to execute a build and deployment pipeline. The other possible value would have been `service`, which we would have used if we were creating a service box, like: MySQL, RabbitMQ or MongoDB.
+
+Because a lot of boxes have quite some things in comon 
+
+For the Scala box I have the following requirements:
+
+* Ubuntu 12.04 LTS
+* OpenJDK 7
+* Scala 2.10
+
+I also want some packages to be available that are pretty common for software development in general, like: build-essentials, curl, git-core and imagemagick.
+
+
+	apt-get install openjdk-7-jdk -qq
 	
 	sudo wget http://www.scala-lang.org/downloads/distrib/files/scala-2.10.0.tgz
 	tar zxvf scala-2.10.0.tgz
