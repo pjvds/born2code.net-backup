@@ -5,7 +5,7 @@ categories: [programming]
 keywords: [auto deploy, wercker, continuous integration]
 ---
 
-In my [last blogpost](/blog/2013/05/27/simplify-your-jekyll-publishing-process-with-wercker/) I described how I used [wercker](http://wercker.com) to automate the publishing and deployment process of this blog. Since then I've fixed some typo's from my iPhone and I used it to publish draft posts to a staging area of my blog. The later helps me to increase the quality of my posts and allows others to proof read in the final form before they get published. You can expect a blogpost about this in the near future. Now I want to share that [wercker introduced auto-deploy](http://blog.wercker.com/2013/06/05/Autodeployment.html) and how this feature changed the way I blog.
+In my [last blogpost](/blog/2013/05/27/simplify-your-jekyll-publishing-process-with-wercker/) I described how I leverage [wercker](http://wercker.com) to automate the publishing and deployment process of my blog. Since then I've fixed typo's from my iPhone and I used it to publish draft posts to a staging area of my blog. This staging area helps me to increase the quality of my posts and allows others to proof read in the final form before they get published. You can expect a blogpost about this in the near future. Now I want to share that [wercker introduced auto-deploy](http://blog.wercker.com/2013/06/05/Autodeployment.html) and how this feature changed the way I blog.
 
 ## Auto Deployment
 
