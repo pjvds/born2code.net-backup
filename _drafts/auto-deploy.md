@@ -21,3 +21,7 @@ I enabled the feature in the deployment target that I have created at [wercker](
 You can see I enabled auto deploy for this target and configured it to only deploy successful build from the master branch. All deployment targets that have auto deploy enabled show the auto deploy icon as you can see just below the deployment target name.
 
 ## How did this change my workflow
+
+Before I enabled this auto deploy feature I committed all my changes directly on the master branch. But since I have enabled auto deploy I shifted to a [feature branching model](http://nvie.com/posts/a-successful-git-branching-model/). Whenever I start a new post I create a feature branch. For this post I created a branch `auto-deploy-jekyll`. On this branch I commit my work in small commits that make sense in the context of writing that post. Hereby I create a lists all my changes including details why I changed something. This log helps me to pick up where I left if I do not work on a post for a couple of days. It also helps when I'm working on one with other people. I can read the reason why the other person changed something.
+
+When a post is finished I merge it to the master branch and push the changes. This triggers a build at wercker and when the build succeeds it will be deployed to production.
