@@ -16,7 +16,7 @@ Whenever I push changes to my github repository wercker will start building my w
 
 I enabled the feature in the deployment target that I have created at [wercker](http://wercker.com), here is how it looks like:
 
-![image]({{ '/auto-deploy-jekyll/deploy-target.png' | asset_url }})
+![image]({{ 'auto-deploy-jekyll/deploy-target.png' | asset_url }})
 
 You can see I enabled auto deploy for this target and configured it to only deploy successful build from the master branch. All deployment targets that have auto deploy enabled show the auto deploy icon as you can see just below the deployment target name.
 
