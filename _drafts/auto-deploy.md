@@ -11,9 +11,9 @@ In my [last blogpost](/blog/2013/05/27/simplify-your-jekyll-publishing-process-w
 
 Auto deployment allows you to let your software flow to production (testing, or any other deployment target) as a stream of small and predictable changes. Before a changeset flows to production it gets challanged by an automated build. The goals of a build is not only to transform the source code to a deployable form, but also to challange its quality. It allows teams to be more agile and it makes you more aware to spend time on the quality checks in your build.
 
-## Auto deploy my jekyll blog 
+## Auto deploy my jekyll blog
 
-I have to deployment targets, staging and production. Both have auto deployment enabled. Here is how my production deployment target looks like at wercker:
+A blog is a safe way to experiment with auto deployment. So I decided to enable it for both of my deployment targets, staging and production. Here is how my production deployment target looks like at wercker:
 
 ![image]({{ 'auto-deploy-jekyll/deploy-target.png' | asset_url }})
 
@@ -27,8 +27,18 @@ Wercker was already building my website with every push to my [Github repository
 
 ## How did this change my workflow
 
-Before I enabled the auto deploy feature I was committing all my changes directly to the master branch. With auto deploy enabled I moved to a [feature branching model](http://nvie.com/posts/a-successful-git-branching-model/). Before I start a new post I create a feature branch that will hold all the changes made before it reaches the final state. Final state means merged to the master branch so that is gets auto deployed.
+Before I enabled the auto deploy feature I was committing all my changes directly to the master branch. But with auto deploy enabled this would means that I deploy on every push. To have more control on what gets deployed I moved to the [feature branching model](http://nvie.com/posts/a-successful-git-branching-model/). This allows me to work in an isolated branch until the work is complete and gets deployed.
 
-For this post I created a branch `auto-deploy-jekyll`. Started working on it and committed my changes in small commits. These commits make sense in the context of writing that post. They create the path to the final state of the post. Next to the textual changes, they also keep the reasons behind the decision I made. For example why I dropped a certain example or why I edited the screenshot. This is extremely helpful for my future self or co-authors. It helps to pick up where I left if, especially when I do not work on a post for a couple of weeks.
+For this post I created a branch `auto-deploy-jekyll`, started working on it by committing my changes to it. These commits helps me to build an audit trail that describes the path to the final state of the post. It contains, next to the textual changes, the reasons behind important decisions I made. For example why I dropped a certain example or why I edited the screenshot. This is extremely helpful for my future self and co-authors. It also helps to pick up where I left if, especially when I do not work on a post for a couple of weeks.
 
 After a post is finished I merge it to the master branch and push the changes to Github. This triggers a build at wercker and when the build succeeds it will be auto deployed to production. In other words, deploying is as easy as merging to master.
+
+## Advantages
+
+* Auto deploy forced me to isolate my work in to smaller branches that gave better focus.
+* The feature branches contain the full path to the final state of my work.
+* The feature branching model gave the master branch cleaner history.
+* Detailed history can be viewed in feature branches.
+* Higher level history can be viewed in the master branch.
+* The feature branches allow me to see the history of a certain paths. This is a big improvement over the history I had when I was commiting directly to the master branch.
+* Deployment is nothing more than a merge to master.
